@@ -58,8 +58,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['logo.png'],
       manifest: {
-        name: 'OmegaRoleGameEditor',
-        short_name: 'OmegaRoleGameEditor',
+        name: 'Omega RGE',
+        short_name: 'Omega RGE',
         description: 'Éditeur de jeu de rôle et table virtuelle',
         theme_color: '#1a1a1a',
         background_color: '#1a1a1a',

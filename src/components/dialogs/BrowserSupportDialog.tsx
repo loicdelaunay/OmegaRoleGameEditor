@@ -131,7 +131,7 @@ export const BrowserSupportDialog: React.FC<BrowserSupportDialogProps> = ({
             }}
           >
             <Typography variant="body2" sx={{ fontWeight: 600, mb: 0.5 }}>
-              OmegaRoleGameEditor is currently optimized exclusively for Google Chrome.
+              Omega RGE is currently optimized exclusively for Google Chrome.
             </Typography>
             <Typography variant="body2" color="text.secondary">
               This application does not officially support other browsers at this moment. You may encounter unexpected display bugs, missing audio features, or broken canvas interactions.

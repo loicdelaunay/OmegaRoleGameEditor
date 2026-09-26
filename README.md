@@ -1,63 +1,63 @@
 <div align="center">
-  <img src="public/logo.png" alt="Logo OmegaRoleGameEditor" width="92" />
+  <img src="public/logo.png" alt="OmegaRoleGameEditor logo" width="92" />
 
   # OmegaRoleGameEditor
 
-  **Créez vos scènes de jeu de rôle, dirigez la partie et partagez une vue dédiée aux joueurs.**
+  **Build tabletop scenes, run your game, and share a dedicated view with players.**
 
-  Éditeur de terrain · Table virtuelle · Session en temps réel
+  Map editor · Virtual tabletop · Real-time sessions
 </div>
 
 ---
 
-## Aperçu
+## Preview
 
-| Éditeur MJ | Vue joueur |
+| Game Master editor | Player view |
 | :---: | :---: |
-| <img src="docs/screenshots/editor.png" alt="Éditeur MJ : hiérarchie, carte et inspecteur" width="600" /> | <img src="docs/screenshots/player.png" alt="Vue joueur épurée sur la même scène" width="600" /> |
+| <img src="docs/screenshots/editor.png" alt="Game Master editor with scene hierarchy, map, and inspector" width="600" /> | <img src="docs/screenshots/player.png" alt="Clean player view of the same scene" width="600" /> |
 
-Les captures utilisent [une carte de démonstration](docs/demo/observatory-map.svg) créée pour ce dépôt.
+The screenshots use an original [demo map](docs/demo/observatory-map.svg) made for this repository.
 
-## Ce que vous pouvez faire
+## Features
 
-| Composer | Diriger | Partager |
+| Build | Run | Share |
 | --- | --- | --- |
-| Importer images et pions, organiser les calques et la hiérarchie, déplacer et transformer les éléments. | Préparer notes, effets, sons, dés et autres outils de partie dans l’espace MJ. | Ouvrir une salle avec le serveur Express/WebSocket et diffuser la scène visible aux joueurs. |
+| Import images and tokens, arrange layers and nested objects, then move and transform scene elements. | Prepare notes, effects, audio, dice, and other Game Master tools. | Host a room with Express and WebSocket, then stream the visible scene to players. |
 
-L’éditeur et la vue joueur sont séparés. Les éléments masqués et les informations propres à l’édition ne sont pas envoyés aux joueurs.
+The Game Master editor and player view are separate. Hidden elements and editing-only information are not sent to players.
 
-## Démarrer
+## Quick start
 
-**Prérequis :** Node.js et npm. Google Chrome est recommandé pour les fonctions de fichiers et certaines interactions avec la scène.
+**Requirements:** Node.js and npm. Google Chrome is recommended for file handling and some scene interactions.
 
 ```bash
 npm ci
 npm run dev:full
 ```
 
-Ouvrez **http://localhost:5173**. Le serveur de session écoute par défaut sur **http://localhost:8787**. Les ports peuvent être modifiés dans [`config.json`](config.json).
+Open **http://localhost:5173**. The session server listens on **http://localhost:8787** by default. You can change both ports in [`config.json`](config.json).
 
-1. Passez en mode **MJ** et créez votre terrain.
-2. Ajoutez des images, des pions et des calques, puis ajustez leurs propriétés dans l’inspecteur.
-3. Utilisez **Sauvegarder sous…** pour exporter la scène.
-4. Ouvrez le mode **Host** et communiquez le code de salle aux joueurs.
-5. Les joueurs passent en vue **Joueur** pour rejoindre la session.
+1. Switch to **MJ** (Game Master) mode and create a terrain.
+2. Add images, tokens, and layers; edit their properties in the inspector.
+3. Use **Sauvegarder sous…** (Save As) to export the scene.
+4. Open **Host** mode and share the room code with your players.
+5. Players switch to **Joueur** (Player) mode to join the session.
 
-## Sauvegardes portables
+## Portable saves
 
-Un terrain s’exporte dans **un seul fichier `.terrain.json`**. Les images sont embarquées sous forme de Data URL : la scène reste transportable sans dossier d’assets séparé. Les anciens fichiers JSON restent lisibles lors des évolutions du format.
+Each terrain exports as **one `.terrain.json` file**. Images are embedded as Data URLs, so the scene can travel without a separate asset directory. Older terrain JSON files remain loadable as the format evolves.
 
-## Stack et scripts
+## Stack and scripts
 
-**Client :** Vite, React, TypeScript, Material UI. **Session :** Express et WebSocket.
+**Client:** Vite, React, TypeScript, Material UI. **Session server:** Express and WebSocket.
 
-| Commande | Usage |
+| Command | Purpose |
 | --- | --- |
-| `npm run dev:full` | Lance le client et le serveur de session. |
-| `npm run dev` | Lance uniquement le client. |
-| `npm run dev:server` | Lance uniquement le serveur. |
-| `npm run build` | Vérifie TypeScript et crée le client de production. |
-| `npm test` | Lance les tests de logique métier. |
-| `npm run lint` | Analyse le code avec ESLint. |
+| `npm run dev:full` | Start the client and session server together. |
+| `npm run dev` | Start only the client. |
+| `npm run dev:server` | Start only the session server. |
+| `npm run build` | Check TypeScript and build the production client. |
+| `npm test` | Run business logic tests. |
+| `npm run lint` | Run ESLint. |
 
-Le code client se trouve dans [`src/`](src), le serveur dans [`server/`](server) et les ressources publiques dans [`public/`](public). Les campagnes personnelles ne sont pas incluses dans ce dépôt.
+The client lives in [`src/`](src), the server in [`server/`](server), and public assets in [`public/`](public). Personal campaigns are not included in this repository.

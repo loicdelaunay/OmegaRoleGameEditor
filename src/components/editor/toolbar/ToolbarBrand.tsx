@@ -8,9 +8,9 @@ export type ToolbarBrandProps = {
 
 export function ToolbarBrand({ onOpenSettings }: ToolbarBrandProps) {
   return (
-    <div className="toolbar-group toolbar-brand" aria-label="OmegaRoleGameEditor">
-      <img src={logo} alt="Logo OmegaRoleGameEditor" className="toolbar-logo" />
-      <div className="app-title toolbar-title">OmegaRoleGameEditor</div>
+    <div className="toolbar-group toolbar-brand" aria-label="Omega RGE">
+      <img src={logo} alt="Logo Omega RGE" className="toolbar-logo" />
+      <div className="app-title toolbar-title">Omega RGE</div>
       <IconButton
         size="small"
         title="Ouvrir les réglages"

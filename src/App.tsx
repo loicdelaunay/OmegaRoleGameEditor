@@ -1968,7 +1968,7 @@ function App() {
   useEffect(() => {
     document.documentElement.dataset.theme = resolvedThemeMode
     document.documentElement.style.colorScheme = resolvedThemeMode
-    document.title = 'OmegaRoleGameEditor'
+    document.title = 'Omega RGE'
   }, [resolvedThemeMode])
 
   useEffect(() => {
@@ -4711,7 +4711,7 @@ function App() {
           suggestedName: fileName,
           types: [
             {
-              description: 'Terrain OmegaRoleGameEditor',
+              description: 'Terrain Omega RGE',
               accept: {
                 'application/json': ['.terrain.json', '.json'],
               },
