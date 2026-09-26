@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+  <defs>
+    <pattern id="stone" width="48" height="48" patternUnits="userSpaceOnUse">
+      <rect width="48" height="48" fill="#263449"/>
+      <path d="M0 0H48M0 0V48" stroke="#58647a" stroke-opacity=".22"/>
+      <circle cx="9" cy="33" r="1.5" fill="#8393a8" opacity=".2"/>
+      <circle cx="38" cy="13" r="1" fill="#8393a8" opacity=".18"/>
+    </pattern>
+    <radialGradient id="glow"><stop stop-color="#86ded1" stop-opacity=".55"/><stop offset="1" stop-color="#86ded1" stop-opacity="0"/></radialGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#050b16" flood-opacity=".65"/></filter>
+  </defs>
+  <rect width="1200" height="700" fill="#101a2a"/>
+  <path d="M0 80 110 25 198 73 253 19 320 65 359 11 470 56 560 0 640 53 720 19 810 82 929 8 1038 64 1130 14 1200 68V700H0Z" fill="#18283a"/>
+  <path d="M27 551 111 486 185 525 247 456 326 532 412 484 493 540 598 470 668 543 756 475 868 548 959 471 1042 517 1169 453 1200 519V700H0Z" fill="#142233"/>
+  <g filter="url(#shadow)">
+    <path d="M73 129h306v194H73zM379 192h177v67H379zM556 85h307v289H556zM863 192h128v67H863zM991 129h144v194H991zM586 374h64v89h-64zM461 463h309v178H461z" fill="url(#stone)" stroke="#a7a9a5" stroke-width="12" stroke-linejoin="round"/>
+  </g>
+  <g fill="none" stroke="#ddb878" stroke-width="5">
+    <path d="M104 159h244v134H104zM587 116h245v227H587zM1022 159h83v134h-83zM492 494h247v116H492z" opacity=".65"/>
+    <circle cx="710" cy="229" r="72"/>
+    <circle cx="710" cy="229" r="52" stroke-dasharray="8 10"/>
+    <path d="M710 145v168M626 229h168M650 169l120 120M770 169 650 289" opacity=".5"/>
+  </g>
+  <g fill="#e7c58d">
+    <circle cx="710" cy="229" r="19"/><circle cx="138" cy="194" r="7"/><circle cx="312" cy="258" r="7"/><circle cx="1057" cy="196" r="7"/><circle cx="1082" cy="272" r="7"/>
+  </g>
+  <g fill="#77b6a8" stroke="#ddf6e9" stroke-width="5">
+    <circle cx="233" cy="226" r="20"/><circle cx="593" cy="544" r="20"/><circle cx="656" cy="545" r="20"/>
+  </g>
+  <g fill="#ed826c" stroke="#ffd3b5" stroke-width="4"><circle cx="1051" cy="227" r="19"/><circle cx="677" cy="289" r="16"/></g>
+  <circle cx="710" cy="229" r="114" fill="url(#glow)"/>
+  <g font-family="Arial,sans-serif" fill="#e5d6b5" letter-spacing="3" text-anchor="middle">
+    <text x="226" y="188" font-size="19">ARCHIVES</text>
+    <text x="710" y="333" font-size="18">OBSERVATOIRE</text>
+    <text x="1063" y="188" font-size="16">SANCTUAIRE</text>
+    <text x="615" y="595" font-size="18">ENTRÉE</text>
+  </g>
+</svg>

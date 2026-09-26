@@ -1,0 +1,176 @@
+/* ============================================================================
+ * RarityPicker — sélecteur de rareté compact (Material Design 3)
+ *
+ * - État fermé : UNIQUEMENT la pastille (centrée, pas de texte).
+ * - État ouvert : popover listant les raretés (pastille + label).
+ * - Le popover est rendu via React Portal au niveau du <body>, donc il est
+ *   positionné en `fixed` (coordonnées viewport) et remonte au-dessus de
+ *   tout via z-index élevé.
+ * ========================================================================== */
+
+/* === Trigger (état fermé) === */
+
+.rarity-picker-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 32px;
+    padding: 4px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+    color: inherit;
+    font: inherit;
+}
+
+.rarity-picker-trigger:hover:not(:disabled) {
+    background: var(--md-sys-color-surface-container);
+    border-color: var(--md-sys-color-outline-variant);
+}
+
+.rarity-picker-trigger:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 2px;
+    background: var(--md-sys-color-surface-container);
+}
+
+.rarity-picker-trigger:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.rarity-picker-trigger--open {
+    background: var(--md-sys-color-surface-container-high);
+    border-color: var(--md-sys-color-primary);
+}
+
+.rarity-picker-dot {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.rarity-picker-placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--md-sys-color-on-surface-variant);
+    opacity: 0.6;
+}
+
+/* === Popover (état ouvert) ===
+ * Rendu dans <body> via createPortal, donc on utilise `position: fixed`
+ * avec top/left/minWidth calculés depuis le rect du trigger. */
+
+.rarity-picker-popover {
+    position: fixed;
+    z-index: 11000;
+    /* au-dessus du FloatingDialog (10000) */
+    max-width: 240px;
+    background: var(--md-sys-color-surface-container-high);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    animation: rarity-picker-popover-in 0.12s ease-out;
+}
+
+@keyframes rarity-picker-popover-in {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === Options === */
+
+.rarity-picker-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--md-sys-color-on-surface);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.12s ease, color 0.12s ease;
+    font-family: inherit;
+    width: 100%;
+}
+
+.rarity-picker-option:hover {
+    background: var(--md-sys-color-surface-container);
+}
+
+.rarity-picker-option--active {
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+}
+
+.rarity-picker-option--active:hover {
+    background: var(--md-sys-color-primary-container);
+}
+
+.rarity-picker-option:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: -2px;
+}
+
+.rarity-picker-option-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.rarity-picker-option-dot--unset {
+    background: transparent;
+    border: 1px dashed var(--md-sys-color-outline);
+    box-shadow: none !important;
+}
+
+.rarity-picker-option-label {
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* === Pastille statique (RarityDot exporté) === */
+
+.rarity-dot {
+    display: inline-block;
+    border-radius: 50%;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+.rarity-dot--unset {
+    background: var(--md-sys-color-outline-variant);
+    border: 1px dashed var(--md-sys-color-outline);
+    box-shadow: none !important;
+}

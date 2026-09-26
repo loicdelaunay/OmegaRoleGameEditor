@@ -1,0 +1,92 @@
+/* === Project Dialog — Gestion du projet ===
+   Layout responsive en grille + cards Material Design 3.
+   Les sections s'affichent en 2 colonnes quand la largeur le permet,
+   sinon en 1 colonne (mobile / dialog étroit). */
+
+.project-dialog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+/* 2 colonnes quand le dialog est assez large (≥ 640px de contenu) */
+@media (min-width: 640px) {
+  .project-dialog-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  /* La section Fichiers disponibles prend toute la largeur (full-row) */
+  .project-dialog-grid > .project-dialog-card--full-row {
+    grid-column: 1 / -1;
+  }
+  /* La section Pré-allocation prend toute la largeur si beaucoup de joueurs */
+  .project-dialog-grid > .project-dialog-card--wide {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Card Material Design 3 : surface-container-low, elevation 1, radius 16px */
+.project-dialog-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--md-sys-color-surface-container-low);
+  border-radius: 16px;
+  box-shadow: var(--md-sys-elevation-1);
+  min-width: 0;
+}
+
+.project-dialog-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-dialog-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--md-sys-color-primary);
+}
+
+.project-dialog-card-desc {
+  margin: 0;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+
+.project-dialog-card-desc code {
+  background: var(--md-sys-color-surface-container-highest);
+  padding: 1px 6px;
+  border-radius: 6px;
+  font-size: 0.8em;
+}
+
+.project-dialog-btn-full {
+  justify-content: center;
+  width: 100%;
+}
+
+.project-dialog-folder-name {
+  font-size: 0.875rem;
+  color: var(--md-sys-color-on-surface);
+  word-break: break-all;
+}
+
+/* MUI Collapse wrapper : le composant Collapse n'ajoute pas de display:flex
+   à ses enfants directs, on force donc l'espacement vertical entre les boutons
+   et autres éléments de la section dépliée. */
+.project-dialog-card .MuiCollapse-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-dialog-card .MuiCollapse-wrapper > * {
+  margin: 0;
+}

@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  --md-sys-color-primary: #672885;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #f1d9ff;
+  --md-sys-color-on-primary-container: #250034;
+  --md-sys-color-secondary: #655a6f;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #ecddf7;
+  --md-sys-color-on-secondary-container: #20182a;
+  --md-sys-color-tertiary: #7f4c5f;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #ffd8e5;
+  --md-sys-color-on-tertiary-container: #32111f;
+  --md-sys-color-error: #ba1a1a;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-surface: #fff7fb;
+  --md-sys-color-surface-dim: #e3d7e4;
+  --md-sys-color-surface-bright: #fff7fb;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-container-low: #fdf0fd;
+  --md-sys-color-surface-container: #f7ebf8;
+  --md-sys-color-surface-container-high: #f1e5f2;
+  --md-sys-color-surface-container-highest: #ecdfee;
+  --md-sys-color-on-surface: #1d1a20;
+  --md-sys-color-on-surface-variant: #4d4353;
+  --md-sys-color-outline: #7f7384;
+  --md-sys-color-outline-variant: #d1c2d4;
+  --md-sys-color-surface-variant: #e7e0e8;
+  --md-elevation-level1: 0 1px 2px rgba(24, 18, 28, 0.12), 0 2px 6px rgba(24, 18, 28, 0.08);
+  --md-elevation-level2: 0 6px 18px rgba(24, 18, 28, 0.14), 0 2px 8px rgba(24, 18, 28, 0.09);
+
+  /* Alias pour compat — variables fantômes précédemment non définies */
+  --border: var(--md-sys-color-outline-variant);
+  --color-primary: var(--md-sys-color-primary);
+  --surface-tonal: var(--md-sys-color-surface-container-high);
+  --text-muted: var(--md-sys-color-on-surface-variant);
+  --font-sans: 'Roboto', system-ui, sans-serif;
+  --font-display: 'Roboto', system-ui, sans-serif;
+
+  font: 14px/1.4 var(--font-sans);
+  letter-spacing: 0.01em;
+  color: var(--md-sys-color-on-surface);
+  background: var(--md-sys-color-surface);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme='dark'] {
+  --md-sys-color-primary: #e7b6ff;
+  --md-sys-color-on-primary: #3a0054;
+  --md-sys-color-primary-container: #4f116d;
+  --md-sys-color-on-primary-container: #f7d8ff;
+  --md-sys-color-secondary: #cfc1da;
+  --md-sys-color-on-secondary: #362d40;
+  --md-sys-color-secondary-container: #4d4357;
+  --md-sys-color-on-secondary-container: #ecddf7;
+  --md-sys-color-tertiary: #f3b7cc;
+  --md-sys-color-on-tertiary: #4b2133;
+  --md-sys-color-tertiary-container: #64384a;
+  --md-sys-color-on-tertiary-container: #ffd8e5;
+  --md-sys-color-error: #ffb4ab;
+  --md-sys-color-on-error: #690005;
+  --md-sys-color-surface: #151218;
+  --md-sys-color-surface-dim: #151218;
+  --md-sys-color-surface-bright: #2f2a31;
+  --md-sys-color-surface-container-lowest: #100d13;
+  --md-sys-color-surface-container-low: #1d1a20;
+  --md-sys-color-surface-container: #211d24;
+  --md-sys-color-surface-container-high: #2b2730;
+  --md-sys-color-surface-container-highest: #36313b;
+  --md-sys-color-on-surface: #e9e0e9;
+  --md-sys-color-on-surface-variant: #d3c1d7;
+  --md-sys-color-outline: #998c9d;
+  --md-sys-color-outline-variant: #4d4353;
+  --md-sys-color-surface-variant: #36313b;
+  --md-elevation-level1: 0 1px 2px rgba(0, 0, 0, 0.44), 0 2px 8px rgba(0, 0, 0, 0.24);
+  --md-elevation-level2: 0 8px 24px rgba(0, 0, 0, 0.42), 0 2px 10px rgba(0, 0, 0, 0.28);
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--md-sys-color-primary) 16%, transparent), transparent 30%),
+    radial-gradient(circle at bottom right, color-mix(in srgb, var(--md-sys-color-tertiary) 18%, transparent), transparent 28%),
+    linear-gradient(180deg, var(--md-sys-color-surface) 0%, var(--md-sys-color-surface-container-low) 100%);
+  color: var(--md-sys-color-on-surface);
+}
+
+#root {
+  overflow: hidden;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  color: var(--md-sys-color-on-surface);
+}
+
+h1 {
+  font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+}
+
+/* Material Design 3 Scrollbars */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--md-sys-color-outline-variant);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--md-sys-color-outline);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--md-sys-color-outline-variant) transparent;
+}

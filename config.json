@@ -1,0 +1,9 @@
+{
+    "host": {
+        "port": 8787
+    },
+    "client": {
+        "devPort": 5173,
+        "proxyTarget": "http://localhost:8787"
+    }
+}

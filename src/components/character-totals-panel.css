@@ -1,0 +1,134 @@
+/* ============================================================================
+ * CharacterTotalsPanel — Material Design 3 horizontal layout
+ * Remplace l'ancien panneau vertical (.char-totals-panel) par une grille
+ * horizontale compacte et responsive, partagée entre Équipement et
+ * Modificateurs.
+ * ========================================================================== */
+
+.char-totals-panel {
+    background: var(--md-sys-color-surface-container);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: 12px;
+    padding: 12px 14px;
+    min-width: 220px;
+    /* Sur grand écran, le panneau se met à côté de la table ; sur petit
+     écran, il passe en pleine largeur sous la table (grâce au `flex-wrap`
+     du parent). */
+    flex: 0 0 auto;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.char-totals-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--md-sys-color-on-surface);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.char-totals-panel-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: var(--md-sys-color-primary-container);
+    color: var(--md-sys-color-on-primary-container);
+    font-weight: 800;
+    font-size: 0.85rem;
+}
+
+/* Grille horizontale : 7 colonnes sur grand écran, 4 colonnes sur tablette,
+   3 colonnes sur mobile. Le `auto-fit` garantit un wrap fluide. */
+.char-totals-panel-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
+    width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .char-totals-panel-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .char-totals-panel-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .char-totals-panel-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.char-totals-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 6px 4px;
+    border-radius: 8px;
+    background: var(--md-sys-color-surface-container-high);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    /* Empêche le débordement quand le label est long */
+    overflow: hidden;
+    min-width: 0;
+}
+
+.char-totals-emoji {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.char-totals-label {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--md-sys-color-on-surface-variant);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.char-totals-value {
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--md-sys-color-on-surface);
+}
+
+.char-totals-value--positive {
+    color: #2e7d32;
+    background: color-mix(in srgb, #2e7d32 10%, transparent);
+    padding: 0 6px;
+    border-radius: 6px;
+}
+
+.char-totals-value--negative {
+    color: #c62828;
+    background: color-mix(in srgb, #c62828 10%, transparent);
+    padding: 0 6px;
+    border-radius: 6px;
+}
+
+.char-totals-value--zero {
+    color: var(--md-sys-color-on-surface-variant);
+    opacity: 0.7;
+}

@@ -1,0 +1,101 @@
+/* ============================================================================
+ * TableColumnResize — poignée de redimensionnement drag-and-drop des colonnes
+ * ----------------------------------------------------------------------------
+ * Pattern M3 + UX tableurs (Excel, Google Sheets, etc.) :
+ *  - Poignée de 4px de large, 100% de la hauteur du <th>
+ *  - Invisible au repos (transparent), visible au survol (liseré primary)
+ *  - Curlew `col-resize` pour signaler l'interaction
+ *  - Hit-area élargi à ~10px (padding interne) sans grossir la barre
+ *    visuelle, conformément au pattern M3 des "hit-targets agrandis"
+ *    (cf. `.selection-handle` du terrain-stage pour un exemple similaire).
+ *  - État actif (`is-dragging`) : ligne primary pleine largeur + curseur
+ *    `col-resize` forcé sur tout le document pour éviter les sauts si
+ *    la souris sort de la poignée pendant le drag.
+ *
+ * Positionnement : la poignée est en `position: absolute` sur le bord
+ * droit du <th> parent. Le <th> parent DOIT donc avoir
+ * `position: relative` (déjà appliqué via le composant TableColumnResize
+ * qui documente ce prérequis dans son JSDoc).
+ * ========================================================================== */
+
+.table-col-resize-handle {
+    /* Positionnement sur le bord droit de la <th> parente. */
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    /* Hit-area élargi : le `padding` n'agrandit pas l'élément (grâce à
+       `box-sizing: content-box`) mais étend la zone cliquable. On utilise
+       un padding négatif pour étendre la hit-area vers la GAUCHE uniquement
+       (le bord droit est déjà sur le pixel 0). Cela permet d'attraper la
+       poignée même si la souris est à 6px à gauche de la limite visible. */
+    padding-left: 6px;
+    box-sizing: content-box;
+    background-color: var(--md-sys-color-outline-variant);
+    opacity: 0.6;
+    background-clip: content-box;
+    /* Curseur de resize : appliqué en permanence sur la hit-area, pas
+       seulement au survol. C'est plus confortable pour l'utilisateur :
+       il voit immédiatement qu'il peut attraper la colonne. */
+    cursor: col-resize;
+    /* Prévention de la sélection de texte / drag natif (images, etc.) */
+    user-select: none;
+    -webkit-user-drag: none;
+    touch-action: none;
+    transition: background-color 120ms ease;
+    z-index: 2;
+}
+
+/* Indicateur visuel au survol : liseré primary sur la zone visible (4px). */
+.table-col-resize-handle:hover {
+    background-color: color-mix(in srgb, var(--md-sys-color-primary) 70%, transparent);
+}
+
+/* Pendant le drag : ligne primary opaque, pour bien marquer l'état
+   "en cours de redimensionnement" (feedback visuel M3). */
+.table-col-resize-handle.is-dragging {
+    background-color: var(--md-sys-color-primary);
+}
+
+/* État désactivé (readOnly) : pas de curseur de resize, pas de hit-area
+   agrandie. On garde une largeur de 0 pour ne pas perturber le layout
+   mais on désactive l'interaction. */
+.table-col-resize-handle.is-disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+/* Focus visible (clavier) : outline primary pour les utilisateurs
+   qui naviguent au clavier (rares sur une table, mais bonne hygiène
+   d'accessibilité — M3 "Focus ring" pattern). */
+.table-col-resize-handle:focus-visible {
+    outline: 2px solid var(--md-sys-color-primary);
+    outline-offset: 1px;
+}
+
+/* Pendant un drag actif, on force le curseur `col-resize` sur le <body>
+   pour éviter qu'il ne se transforme en curseur par défaut quand la
+   souris quitte la poignée (le `setPointerCapture` bloque déjà les
+   events, mais le curseur visuel doit suivre). On utilise une classe
+   posée sur <html> par le composant React (via `useEffect`) — non
+   implémentée ici car `setPointerCapture` suffit pour le pointer,
+   mais le curseur peut "flicker" sur certains navigateurs si on ne
+   force pas. Solution : on l'ajoute au body via JS au début du drag. */
+
+/* Quand un drag est en cours sur N'IMPORTE QUELLE poignée, on force le
+   `col-resize` sur tout le document via la classe `.is-resizing-table`
+   posée sur <body> par le composant React. Cela évite d'avoir besoin
+   de `:has()` (encore peu supporté). */
+body.is-resizing-table,
+body.is-resizing-table * {
+    cursor: col-resize !important;
+    user-select: none !important;
+}
+
+/* Empêche le navigateur d'afficher l'image "fantôme" lors d'un drag
+   natif (sécurité anti-régression) — la poignée n'est pas draggable
+   en HTML5, mais on bloque au cas où. */
+.table-col-resize-handle[draggable="true"] {
+    pointer-events: none;
+}

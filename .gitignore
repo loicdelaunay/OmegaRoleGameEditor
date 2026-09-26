@@ -1,0 +1,14 @@
+node_modules/
+dist/
+dist-ssr/
+*.log
+*.local
+.vscode/
+.idea/
+projects/
+.agents/
+agents/
+.superpowers/
+docs/superpowers/
+debug/
+templates/
